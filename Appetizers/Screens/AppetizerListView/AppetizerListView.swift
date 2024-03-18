@@ -23,6 +23,7 @@ struct AppetizerListView: View {
                         }
                 }
                 .navigationTitle("🍔 Appetizers")
+                //.listStyle(.plain)
                 .disabled(viewModel.isShowingDetail)
             }
             // weil eine Funktion nicht innerhalb eines Views aufgerufen werden kann

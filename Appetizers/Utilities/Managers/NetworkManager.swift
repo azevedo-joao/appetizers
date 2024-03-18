@@ -7,16 +7,26 @@
 
 import UIKit
 
+// TODO: Kommentare
 final class NetworkManager {
     
+    // TODO: Kommentare
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
     
+    // FIXME: is kapput und so
     static let baseURL = "https://seanallen-course-backend.herokuapp.com/swiftui-fundamentals/"
     private let appetizerURL = baseURL + "appetizers"
     
     private init() {}
     
+    /// Diese Methode ist sehr interessant!
+    ///
+    /// - Parameters:
+    ///     - completed: Ich habe nicht unbedingt verstanden, was dieser Parameter macht...
+    ///
+    /// - Returns:
+    /// Der Rückgabewert ist eigentlich Void?
     func getAppetizers(completed: @escaping (Result<[Appetizer], ApError>) -> Void) {
         
         // wenn URL nil zurückgibt
@@ -25,7 +35,7 @@ final class NetworkManager {
             return
         }
         
-        // der Task ist der API-Aufruf
+        /// der Task ist der API-Aufruf
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             if let _ = error {
                 completed(.failure(.unableToComplete))

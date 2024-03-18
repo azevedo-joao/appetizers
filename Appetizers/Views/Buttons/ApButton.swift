@@ -18,6 +18,8 @@ struct ApButton: View {
             .frame(width: 260, height: 50)
             .foregroundStyle(.white)
             .background(.brandPrimary)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.bottom, 20)
     }
 }
 
