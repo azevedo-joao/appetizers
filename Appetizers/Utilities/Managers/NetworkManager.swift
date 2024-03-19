@@ -13,58 +13,67 @@ final class NetworkManager {
     // TODO: Kommentare
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
-    
-    // FIXME: is kapput und so
     static let baseURL = "https://seanallen-course-backend.herokuapp.com/swiftui-fundamentals/"
     private let appetizerURL = baseURL + "appetizers"
     
     private init() {}
     
-    /// Diese Methode ist sehr interessant!
-    ///
-    /// - Parameters:
-    ///     - completed: Ich habe nicht unbedingt verstanden, was dieser Parameter macht...
-    ///
-    /// - Returns:
-    /// Der Rückgabewert ist eigentlich Void?
-    func getAppetizers(completed: @escaping (Result<[Appetizer], ApError>) -> Void) {
+    //    func getAppetizers(completed: @escaping (Result<[Appetizer], ApError>) -> Void) {
+    //
+    //        // wenn URL nil zurückgibt
+    //        guard let url = URL(string: appetizerURL) else {
+    //            completed(.failure(.invalidURL))
+    //            return
+    //        }
+    //
+    //        /// der Task ist der API-Aufruf
+    //        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
+    //            if let _ = error {
+    //                completed(.failure(.unableToComplete))
+    //                return
+    //            }
+    //
+    //            // casts response als URL, wenn nicht nil checkt, ob status code 200 ist
+    //            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+    //                completed(.failure(.invalidResponse))
+    //                return
+    //            }
+    //
+    //            guard let data = data else {
+    //                completed(.failure(.invalidData))
+    //                return
+    //            }
+    //
+    //            // wird ausgeführt, wenn der Rest nicht gescheitert ist (Datum ist vorhanden)
+    //            do {
+    //                let decoder = JSONDecoder()
+    //                let decodedResponse = try decoder.decode(AppetizerResponse.self, from: data)
+    //                completed(.success(decodedResponse.request))
+    //            } catch {
+    //                completed(.failure(.invalidData))
+    //            }
+    //
+    //        }
+    //
+    //        task.resume()
+    //    }
+    
+    func getAppetizers() async throws -> [Appetizer] {
         
         // wenn URL nil zurückgibt
         guard let url = URL(string: appetizerURL) else {
-            completed(.failure(.invalidURL))
-            return
+            throw ApError.invalidURL
         }
         
-        /// der Task ist der API-Aufruf
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
-            
-            // casts response als URL, wenn nicht nil checkt, ob status code 200 ist
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-            
-            // wird ausgeführt, wenn der Rest nicht gescheitert ist (Datum ist vorhanden)
-            do {
-                let decoder = JSONDecoder()
-                let decodedResponse = try decoder.decode(AppetizerResponse.self, from: data)
-                completed(.success(decodedResponse.request))
-            } catch {
-                completed(.failure(.invalidData))
-            }
-            
-        }
+        let (data, _) = try await URLSession.shared.data(from: url)
         
-        task.resume()
+        // wird ausgeführt, wenn der Rest nicht gescheitert ist (Datum ist vorhanden)
+        do {
+            let decoder = JSONDecoder()
+            return try decoder.decode(AppetizerResponse.self, from: data).request
+        } catch {
+            throw ApError.invalidData
+        }
     }
     
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
@@ -86,7 +95,7 @@ final class NetworkManager {
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
             
             //check, ob es data da ist und mach ein Image aus dem data
-            guard let data = data, let image = UIImage(data: data) else {
+            guard let data, let image = UIImage(data: data) else {
                 completed(nil)
                 return
             }

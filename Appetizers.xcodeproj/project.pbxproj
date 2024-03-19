@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		080F085B2BA89FB90049170E /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F085A2BA89FB90049170E /* Order.swift */; };
+		080F085D2BA8AE550049170E /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080F085C2BA8AE550049170E /* CustomModifiers.swift */; };
 		0832E8182BA04393008D9177 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0832E8172BA04393008D9177 /* RemoteImage.swift */; };
 		084A4B9D2BA10375002C912D /* AppetizerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 084A4B9C2BA10375002C912D /* AppetizerDetailView.swift */; };
 		087425982B9E1406001ABDC2 /* AppetizersApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087425972B9E1406001ABDC2 /* AppetizersApp.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		080F085A2BA89FB90049170E /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		080F085C2BA8AE550049170E /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		0832E8172BA04393008D9177 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		084A4B9C2BA10375002C912D /* AppetizerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppetizerDetailView.swift; sourceTree = "<group>"; };
 		087425942B9E1406001ABDC2 /* Appetizers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appetizers.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +209,7 @@
 				087425972B9E1406001ABDC2 /* AppetizersApp.swift */,
 				0874259B2B9E1408001ABDC2 /* Assets.xcassets */,
 				0874259D2B9E1408001ABDC2 /* Preview Content */,
+				080F085C2BA8AE550049170E /* CustomModifiers.swift */,
 			);
 			path = Appetizers;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				080F085B2BA89FB90049170E /* Order.swift in Sources */,
 				087425B82B9E5E2F001ABDC2 /* LoadingView.swift in Sources */,
 				08EB12DB2BA50511005BD6FE /* EmptyState.swift in Sources */,
+				080F085D2BA8AE550049170E /* CustomModifiers.swift in Sources */,
 				0832E8182BA04393008D9177 /* RemoteImage.swift in Sources */,
 				0874259A2B9E1406001ABDC2 /* AppetizerTabView.swift in Sources */,
 				087425B02B9E2707001ABDC2 /* NetworkManager.swift in Sources */,

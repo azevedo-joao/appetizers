@@ -17,6 +17,8 @@ struct AppetizerListView: View {
             NavigationStack {
                 List(viewModel.appetizers) { appetizer in
                     AppetizerListCell(appetizer: appetizer)
+                        //.listRowSeparatorTint(.brandPrimary)
+                        //.listRowSeparator(.hidden)
                         .onTapGesture {
                             viewModel.selectedAppetizer = appetizer
                             viewModel.isShowingDetail = true
@@ -27,7 +29,7 @@ struct AppetizerListView: View {
                 .disabled(viewModel.isShowingDetail)
             }
             // weil eine Funktion nicht innerhalb eines Views aufgerufen werden kann
-            .onAppear {
+            .task {
                 viewModel.gettAppetizers()
             }
             .blur(radius: viewModel.isShowingDetail ? 20 : 0)

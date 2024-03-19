@@ -30,8 +30,14 @@ struct OrderView: View {
                     Button {
                         print("order placed")
                     } label: {
-                        ApButton(title: "\(order.totalPrice, specifier: "%.2f") € – Place order")
+                        //ApButton(title: "\(order.totalPrice, specifier: "%.2f") € – Place order")
+                        Text("\(order.totalPrice, specifier: "%.2f") € – Place order")
                     }
+                    .modifier(StandardButtonStyle())
+                    //.standardButtonStyle() // -> wenn die Extension erstellt wurde
+//                    .buttonStyle(.bordered)
+//                    .tint(.brandPrimary)
+//                    .controlSize(.large)
                     .padding(.bottom, 25)
                 }
                 

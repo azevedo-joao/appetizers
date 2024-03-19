@@ -12,7 +12,7 @@ final class Order: Observable, ObservableObject {
     @Published var items: [Appetizer] = []
     
     var totalPrice: Double {
-        items.reduce(0) { $0 + $1.price}
+        items.reduce(0) { $0 + $1.price }
     }
     
     func add(_ appetizer: Appetizer) {
